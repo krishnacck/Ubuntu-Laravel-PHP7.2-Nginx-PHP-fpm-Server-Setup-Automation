@@ -1,7 +1,13 @@
 echo -n "Please Type Your Domain Name=="
 read answer
 if whiptail --yesno "You are installing $answer. Are you sure want to continue?" 20 60 ;then
-    sudo apt-get update
+	fallocate -l 8G /swapfile
+	chmod 600 /swapfile
+	mkswap /swapfile
+	swapon /swapfile
+	echo "/swapfile swap swap defaults 0 0" >> /etc/fstab
+	sysctl vm.swappiness=10
+	sudo apt-get update
 	apt-get install software-properties-common -y 
 	apt-get install python-software-properties -y
 	add-apt-repository ppa:ondrej/php -y
