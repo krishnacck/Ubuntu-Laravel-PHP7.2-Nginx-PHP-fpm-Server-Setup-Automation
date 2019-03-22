@@ -11,7 +11,7 @@ if whiptail --yesno "You are installing $answer. Are you sure want to continue?"
 	apt-get install software-properties-common -y 
 	apt-get install python-software-properties -y
 	add-apt-repository ppa:ondrej/php -y
-	apt-get -y install unzip zip nginx php7.3-fpm php7.3-cli php7.3-mysql php7.3-gd php7.3-imagick php7.3-recode php7.3-tidy php7.3-xmlrpc
+	apt-get -y install unzip zip nginx php7.3-fpm php7.3-cli php7.3-mysql php7.3-gd php7.3-imagick php7.3-recode php7.3-tidy php7.3-xmlrpc php7.3-mbstring php7.3-xml php-gd php-xml php-mbstring  php7.3-curl
 	rm -f /etc/nginx/sites-enabled/default;
 	if (whiptail --title "Nginx Server Configuration" --yes-button "Primary" --no-button "Secondary"  --yesno "You are installing $answer as Default Server. If your answer is yes please select Primary, If you want to install as a secondary domain please select as Secondary" 10 60) then
 		cat <<EOF > /etc/nginx/sites-available/$answer
@@ -99,7 +99,7 @@ EOF
 			location ~ \.php\$ {
 			        try_files \$uri /index.php =404;
 			        fastcgi_split_path_info ^(.+\.php)(/.+)\$;
-			        fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+			        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
 			        fastcgi_index index.php;
 			        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
 			        include fastcgi_params;
