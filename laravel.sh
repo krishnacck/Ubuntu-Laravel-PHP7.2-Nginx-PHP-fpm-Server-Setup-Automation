@@ -133,3 +133,16 @@ EOF
 else
     echo No
 fi
+
+if whiptail --yesno "Do you want to enable https support for $answer?" 20 60 ;then
+	echo -n "Please Type Your Email Address to receive alerts regarding let's encrypt https support=="
+	read email
+	add-apt-repository ppa:certbot/certbot -y
+	apt-get update -y
+	apt-get install python-certbot-nginx -y
+	nginx -t && nginx -s reload
+	sudo certbot --nginx -d $answer -d www.$answer --email $email  --agree-tos --redirect --non-interactive
+else
+    echo No
+fi
+echo "Installation Completed Successfully"
