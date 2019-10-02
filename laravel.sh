@@ -11,7 +11,7 @@ if whiptail --yesno "You are installing $answer. Are you sure want to continue?"
 	apt-get install software-properties-common -y 
 	apt-get install python-software-properties -y
 	add-apt-repository ppa:ondrej/php -y
-	apt-get -y install unzip zip nginx php7.2 php7.2-mysql php7.2-fpm php7.2-mbstring php7.2-xml php7.2-curl
+	apt-get -y install unzip zip nginx php7.2 php7.2-mysql php7.2-fpm php7.2-mbstring php7.2-xml php7.2-curl php7.2-bcmath
 	rm -f /etc/nginx/sites-enabled/default;
 	if (whiptail --title "Nginx Server Configuration" --yes-button "Primary" --no-button "Secondary"  --yesno "You are installing $answer as Default Server. If your answer is yes please select Primary, If you want to install as a secondary domain please select as Secondary" 10 60) then
 		cat <<EOF > /etc/nginx/sites-available/$answer
